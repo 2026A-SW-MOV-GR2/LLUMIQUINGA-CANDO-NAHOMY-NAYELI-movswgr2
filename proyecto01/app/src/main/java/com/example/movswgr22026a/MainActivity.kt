@@ -1,20 +1,35 @@
 package com.example.movswgr22026a
 
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.app.Application
+import com.facebook.react.PackageList
+import com.facebook.react.ReactApplication
+import com.facebook.react.ReactPackage
+import com.facebook.react.defaults.DefaultReactNativeHost
+import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
+import com.facebook.soloader.SoLoader
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+class MainApplication : Application(), ReactApplication {
+
+    override val reactNativeHost = object : DefaultReactNativeHost(this) {
+        override fun getPackages(): List<ReactPackage> {
+            val packages = PackageList(this).packages.toMutableList()
+
+            packages.add(ResourcePackage())
+
+            return packages
+        }
+
+        override fun getJSMainModuleName(): String = "index"
+        override val useDeveloperSupport: Boolean = BuildConfig.DEBUG
+        override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+        override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        SoLoader.init(this, false)
+        if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+            load(this, false)
         }
     }
 }
