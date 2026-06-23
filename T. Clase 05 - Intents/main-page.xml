@@ -1,0 +1,79 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      loaded="onPageLoaded"
+      navigatedTo="onNavigatedTo">
+
+  <TabView>
+
+    <!-- ════ SECCIÓN A: SALIENTES ════ -->
+    <TabView.items>
+      <TabViewItem title="Salientes">
+        <ScrollView>
+          <StackLayout class="p-20">
+
+            <!-- Panel 1: Llamador -->
+            <Label text="📞 Llamador Misterioso" class="h2 m-b-10"/>
+            <TextField
+              id="phoneField"
+              hint="Ingresa número (ej: 0987654321)"
+              keyboardType="phone"
+              class="m-b-10"/>
+            <Button
+              text="INICIAR DIAL"
+              tap="onDial"
+              class="btn btn-primary"/>
+
+            <Label text="" class="m-t-20"/>
+
+            <!-- Panel 2: Cámara -->
+            <Label text="📷 Foto Express" class="h2 m-b-10"/>
+            <Image
+              id="photoPreview"
+              width="200" height="200"
+              stretch="aspectFit"
+              backgroundColor="#e0e0e0"
+              class="m-b-10"/>
+            <Button
+              text="TOMAR FOTO"
+              tap="onTakePhoto"
+              class="btn btn-primary"/>
+
+          </StackLayout>
+        </ScrollView>
+      </TabViewItem>
+
+      <!-- ════ SECCIÓN B: ENTRANTES ════ -->
+      <TabViewItem title="Entrantes">
+        <ScrollView>
+          <StackLayout class="p-20">
+
+            <Label text="📥 Datos externos recibidos" class="h2 m-b-10"/>
+            <Label
+              id="statusLabel"
+              text="Estado: Esperando datos externos..."
+              class="m-b-20"
+              color="gray"/>
+
+            <!-- Contenedor texto -->
+            <Label text="Texto recibido:" class="font-weight-bold"/>
+            <TextView
+              id="receivedText"
+              editable="false"
+              height="120"
+              class="m-b-20"
+              hint="Aquí aparecerá el texto compartido..."/>
+
+            <!-- Contenedor imagen -->
+            <Label text="Imagen recibida:" class="font-weight-bold"/>
+            <Image
+              id="receivedImage"
+              width="300" height="250"
+              stretch="aspectFit"
+              backgroundColor="#e0e0e0"/>
+
+          </StackLayout>
+        </ScrollView>
+      </TabViewItem>
+
+    </TabView.items>
+  </TabView>
+</Page>

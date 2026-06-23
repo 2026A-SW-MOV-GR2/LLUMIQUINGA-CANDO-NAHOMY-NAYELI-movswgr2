@@ -1,0 +1,27 @@
+<activity
+    android:name="com.tns.NativeScriptActivity"
+    android:label="@string/title_activity_kimera"
+    android:launchMode="singleTask"
+    android:configChanges="keyboardHidden|orientation|screenSize">
+
+    <!-- Intent de inicio normal -->
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+    </intent-filter>
+
+    <!-- Receptor de Chismes: texto plano desde WhatsApp, Chrome, YouTube, etc. -->
+    <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="text/plain"/>
+    </intent-filter>
+
+    <!-- Lector de Imágenes: desde Galería, Google Fotos, etc. -->
+    <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="image/*"/>
+    </intent-filter>
+
+</activity>
